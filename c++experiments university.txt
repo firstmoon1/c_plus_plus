@@ -1,0 +1,1865 @@
+lab3 question 4
+time sorusu
+Write a complete C program that has TIME structure. That structure has hour minute and second. Get hours, 
+minutes and seconds respectively from user and calculate the time difference by pointer function.
+For example:
+
+Input           Result
+5 8 7 2 5 4     3:3:3
+
+#include <stdio.h>
+struct TIME{
+  
+  int seconds;
+  int minutes;
+  int hours;
+};
+void differenceBetweenTimePeriod(struct TIME t1, struct TIME t2, struct TIME *diff);
+int main(){
+   
+    struct TIME startTime, stopTime, diff;
+    scanf("%d %d %d", &startTime.hours, &startTime.minutes, &startTime.seconds);
+    scanf("%d %d %d", &stopTime.hours, &stopTime.minutes, &stopTime.seconds);
+    // Calculate the difference between the start and stop time period.
+    differenceBetweenTimePeriod(startTime, stopTime, &diff);
+    printf("%d:%d:%d", diff.hours, diff.minutes, diff.seconds);
+    return 0;
+}
+void differenceBetweenTimePeriod(struct TIME start, struct TIME stop, struct TIME *diff){
+    
+    if(stop.seconds > start.seconds){
+        --start.minutes;
+        start.seconds += 60;
+    }
+    diff->seconds = start.seconds - stop.seconds;
+    if(stop.minutes > start.minutes){
+        --start.hours;
+        start.minutes += 60;
+    }
+    diff->minutes = start.minutes - stop.minutes;
+    diff->hours = start.hours - stop.hours;
+}
+
+
+
+
+
+
+
+lab 10  question 6
+input                        output
+5 I love C++ Programming     I lo
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+int main(){
+   int b;
+   cin>>b;
+   //string c;
+   char c[100];
+   //getline(cin,c);
+   // cin.getline yazmış aynı ile bununla cin.get( )
+   // b yazarsan length-1 yapıyor istenilen miktarda alımın 1 
+   //eksigi kadarını alıyor.bu yüzden b+1 koyduk 
+    cin.getline(c,b+1);
+    cout<<c;
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+lab 10 question 8
+sorting for string
+input      output
+CSE1146    1146CES
+
+
+#include <string>
+#include <iostream>
+#include <algorithm>// algorithm
+#include <cstring>// c deki <string.h> ile aynı
+using namespace std;
+
+int main() 
+{ 
+    string s; 
+    getline(cin,s);
+    sort(s.begin(),s.end());
+    cout<<s;
+    //... // Read the string
+    //.. // sort Lexicographically 
+    //...  // Print the string
+    return 0; 
+} 
+
+
+
+
+
+lab 10 question 8
+sorting for int arrays.
+output
+0
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+int main(){
+    int i[]={8,9,6,5,2,3,6,40,0}; 
+    int a=sizeof(i)/sizeof(i[0]);
+    sort(i,i+a);
+    cout<<i[0];
+    
+return 0;
+}
+	
+
+
+
+
+
+
+
+lab 11 question 1
+input
+abc
+output
+size: 3
+length: 3
+capacity: 15
+max_size: 9223372036854775807
+
+
+// comparing size, length, capacity and max_size
+#include <iostream>
+#include <string>
+
+int main ()
+{
+  std::string str;
+  std::cin>>str;
+  std::cout << "size: " << str.size() << "\n";
+  std::cout << "length: " << str.length() << "\n";
+  std::cout << "capacity: " << str.capacity() << "\n";
+  std::cout << "max_size: " << str.max_size() << "\n";
+  return 0;
+}
+
+
+
+
+
+lab 11 question 2
+
+Input
+I saw Elvis in an UFO. 
+thought I 
+I've been working too hard.
+Result
+I saw Elvis in an UFO.
+Size = 23
+Capacity = 30
+I thought I  saw Elvis in an UFO.
+Size = 34
+Capacity = 60
+I thought I  saw Elvis in an UFO. I've been working too hard.
+Size = 61
+Capacity = 500
+
+#include <string>
+#include <iostream>
+using namespace std;
+int main ()
+{
+
+  string bigNews;
+  getline(cin, bigNews);
+  cout << bigNews << endl;
+  // How much data have we actually got?
+
+  cout << "Size = " <<bigNews.size()<< endl;
+  // How much can we store without reallocating
+ 
+  cout << "Capacity = " << bigNews.capacity() << endl;
+
+  // Insert this string in bigNews immediately
+  // before bigNews[1]
+
+  string whatToInsert;
+  getline(cin, whatToInsert);
+    bigNews.insert(1,whatToInsert);
+
+  cout << bigNews << endl;
+  cout << "Size = " << bigNews.size()<< endl;
+  cout << "Capacity = " << bigNews.capacity() << endl;
+
+
+  // Make sure that there will be this much space
+   bigNews.reserve(500); //use reserve for 500 bytes
+
+  string whatToAppend;
+  getline(cin, whatToAppend);
+
+  // Add this to the end of the string
+  bigNews.append(whatToAppend);
+
+  cout << bigNews << endl;
+  cout << "Size = " << bigNews.size() << endl;
+  cout << "Capacity = " << bigNews.capacity() << endl;
+}
+
+
+
+
+
+
+lab 11 question 3
+input
+A piece of text
+$tagnjlb$
+output
+A piece $tagnjlb$   of text
+start = 8
+size = 9
+A piece hello there   of text
+
+#include <iostream>
+using namespace std;
+int
+main ()
+{
+  string s;
+  getline(cin,s); // read "A piece of text"
+  string tag; 
+  getline(cin,tag); // read tag as "$tagnjlb$"
+  
+  s.insert(8,tag+"   "); //insert 3 space chars after tag starting from index 8
+  //s.insert(8,tag);
+  cout << s << endl; // print the string so far
+   // s.insert(8,tag);
+  // use find method to find 
+   // s.find("$tagnjlb$");
+    //the start of the tag inside the string s
+    
+
+  cout << "start = " << s.find(tag) << endl; // print start
+  cout << "size = " << tag.size() << endl; // print tag size
+  s.replace(8,tag.size(),"hello there"); // replace tag with a new text
+  cout << s << endl; // print the final string
+}
+
+
+
+
+
+lab 11 question 4
+Input
+ABC
+XYZ
+Result
+XYZ is lexically greater than ABC
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main ()
+{
+    string first;
+    string second;
+    getline(cin,first);	// read the first string from the user
+    getline(cin,second);	// read the second string from the user
+    first.swap(second);	//swap first and second strings
+    // Which is lexically greater?
+    // compare first and second strings		
+    if(first.compare(second) == 0)			// The same
+      cout << first << " and " << second << " are lexically equal" << endl;
+    else if(first.compare(second) < 0)			// Less than
+      cout << first << " is lexically smaller than " << second << endl;
+    else			// Greater than
+      cout << first << " is lexically greater than " << second << endl;
+}
+
+
+
+
+
+
+
+
+lab 11 question 5
+What will be the output when you execute the following C code? Give the exact result!
+
+#include <string>
+#include <iostream>
+using namespace std;
+int main ()
+{
+	string s ("1234");
+	// Runtime problem if number is greater then size: goes beyond array bounds:
+	cout << s[1] << " ";
+	// Saves you by throwing an exception: if number is greater then size
+	cout << s.at(1) << endl;
+}
+answer:2 2
+
+
+
+
+
+
+lab 11 question 6
+Input	
+We think in generalities, but we live in details.
+3
+5
+Result
+think live in details.
+
+#include <iostream>
+#include <string>
+using namespace std;
+int main ()
+{
+  string str;
+  int M, N;
+  //read string
+ getline(cin,str);
+ cin>>M>>N;
+  //read M & N
+  //take the substring from M to N in str
+  string str2 = str.substr(M,N);
+  int pos = str.find("live");      // position of "live" in str
+  std::string str3 = str.substr (pos);     // get from "live" to the end
+  std::cout << str2 << ' ' << str3 << '\n';
+  return 0;
+}
+
+
+
+
+
+
+// reverse string
+lab 11 question 7
+Its a trivial task to check if a string is a palindrome in C++ strings 
+compared to Lab6-Q5 which is written in C. Texts that are equivalent to 
+their reverse are called palindrome. You will check whether a given input 
+text is palindrome or not. For example "abba", "ey edip adanada pide ye", 
+"2456542". We will use reverse in <algorithm> and string compare.
+
+#include <string>
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int main() 
+{ 
+    string s1,s2; 
+    getline(cin,s1);// Read the string
+    s2=s1; // Copy the string
+   reverse(s2.begin(),s2.end()); // Reverse the string
+    
+    if(s1==s2) // if equal 
+        cout<<s1<<" is palindrome";  // Print the string
+    else
+        cout<<s1<<" is not palindrome";
+    return 0; 
+} 
+
+
+
+
+
+
+lab 11 question 8
+Input	
+This is the CSE1146 Lab
+is
+Expected
+Next occurrence is at 2
+Next occurrence is at 5
+is occurs 2 times in the string
+
+1 inci yol
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main(){ 
+    
+    string str1;
+    string str2;
+   getline(cin,str1);// read first string
+    getline(cin,str2);// read second string
+  int count=0;
+  size_t found=str1.find(str2); // use find to get first occurrence
+   // in a loop count and get the occurrence index
+    while(found!=string::npos){
+     cout<<"Next occurrence is at "<<found<<endl;
+     count++;
+     found=str1.find(str2,found+1);
+    }
+    if(count==0)
+        cout<<str2<<" does not occur in the string";
+    else
+        cout<<str2<<" occurs "<<count<<" times in the string";
+    return 0; 
+}
+
+
+2inci yol
+/*
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main(){ 
+    string str;
+    string str1;
+    getline(cin,str); // read first string
+    getline(cin,str1); // read second string
+  
+    int n=str.find(str1); // use find to get first occurrence
+    bool b=true;
+    int m,count=0;
+    int i=str.size();
+    for(m=0;m<i;m++){
+        if(b){
+            cout<<"Next occurrence "<<str1<<" at "<<n<<endl;
+            count++; 
+        }
+        n=str.find(str1,n+1);
+        if(n>-1){
+            b=1;
+        }else{
+            break;
+        }
+    }
+     // in a loop count and get the occurrence index
+    
+    if(count==0)
+        cout<<str1<<" does not occur in the string";
+    else
+        cout<<str1<<" occurs "<<count<<" times in the string";
+    return 0; 
+} 
+*/
+3 üncü yol
+#include <string>
+#include <iostream>
+using namespace std;
+
+int main(){ 
+    string str;
+    string str1;
+    int count=0,i=0,j;
+    getline(cin,str); // read first string
+    getline(cin,str1); // read second string
+   int size=str.size();
+    while(i<size){
+       j=str.find(str1);
+       if(j!=size && j>=0){
+           cout<<"Next occurrence "<<str1<<" at "<<j<<endl;
+           count++;
+           str.replace(j,2,"  ");
+       }
+       if(j==size){
+           break;
+       }
+        i++;
+    }
+     // use find to get first occurrence
+     // in a loop count and get the occurrence index
+    
+    if(count==0)
+        cout<<str1<<" does not occur in the string";
+    else
+        cout<<str1<<" occurs "<<count<<" times in the string";
+    return 0; 
+} 
+
+
+
+
+
+
+
+lab 12 question 1
+output:
+Volume of Box1 : 210
+Volume of Box2 : 1560
+
+#include <string>
+#include <iostream>
+using namespace std;
+class first{
+	public:
+		float h,w,l;
+		float vol(float a,float b,float c);
+		
+};
+
+float first::vol(float a,float b,float c){
+			return a*b*c;
+		}
+int main (){
+	first Box1,Box2;
+	
+	Box1.h = 5.0;
+  	 Box1.l = 6.0;
+  	 Box1.w = 7.0;
+	Box1.vol(Box1.h,Box1.l,Box1.w);
+   // box 2 specification
+  	 Box2.h = 10.0;
+  	 Box2.l = 12.0;
+  	 Box2.w = 13.0;
+	Box2.vol(Box2.h,Box2.l,Box2.w);
+	 cout << "Volume of Box1 : " <<	Box1.vol(Box1.h,Box1.l,Box1.w)<<endl;
+	 cout << "Volume of Box2 : " << Box2.vol(Box2.h,Box2.l,Box2.w) <<endl;
+
+
+}
+
+
+
+
+
+
+
+
+lab 12 question 2
+output
+Length of line : 6
+Length of line : 10
+
+#include <string>
+#include <iostream>
+using namespace std;
+class first{
+	public:
+		float l;
+		void getline(float a);
+		float getbackline(void);
+};
+
+void first::getline(float a){
+			l=a;
+		}
+
+float first::getbackline(void){
+	return (int)(l);
+}
+int main (){
+	first oden;
+	float num;
+	num=6;
+	oden.getline(num);
+	cout<<"Length of line : "<<(int)oden.getbackline()<<endl;
+	num=10;
+	oden.getline(num);
+	cout<<"Length of line : "<<(int)oden.getbackline()<<endl;
+	return 0;
+}
+
+
+
+
+
+
+
+
+lab 12 question 3
+
+output
+Length of box : 10
+Width of box : 10
+
+#include <string>
+#include <iostream>
+using namespace std;
+class first{
+	private:
+		double width;
+	public:
+		double length;
+		void set(double a);
+		double get();
+
+};
+void first::set(double a){
+	width=a;
+}
+double first::get(){
+	return width;
+}
+int main (){
+	
+	first oden;
+		oden.length=10;
+		oden.set(10);
+		cout<< "Length of box : "<<oden.length<<endl;
+		cout<< "Width of box : "<<oden.get()<<endl;
+		return 0;
+}
+
+
+
+
+
+
+lab 12 question 4
+
+Width of box : 5
+
+#include <string>
+#include <iostream>
+using namespace std;
+class first{
+	protected:
+		double width;
+	public:
+		;
+};
+
+class second: first{
+	public:
+		void set(double a);
+		double get();
+};
+void second::set(double a){
+	width=a;
+}
+double second::get(){
+	return width;
+}
+int main (){
+	
+	second oden;
+		oden.set(5);	
+		cout<< "Width of box : "<<oden.get()<<endl;
+		return 0;
+}
+
+
+
+
+
+lab 12 question 5
+
+Object is being created
+Length of line : 6
+Object is being deleted
+
+#include <string>
+#include <iostream>
+using namespace std;
+class first{
+	private:
+		double line;
+	public:
+		void set(int a);
+		int get();
+		first();
+		~first();
+};
+first::~first(){
+	cout<<"Object is being deleted\n";
+}
+first::first(){
+	cout<<"Object is being created"<<endl;
+}
+void first::set(int a){
+	line=a;
+}
+int first::get(){
+	return line;
+} 
+int main (){
+	
+	first oden;
+		oden.set(6);	
+		cout<< "Length of line : "<<oden.get()<<endl;
+		return 0;
+}
+
+
+
+
+
+lab 12 question 6
+
+Object is being created
+Length of line : 6
+Object is being deleted
+aaa
+
+#include <string>
+#include <iostream>
+using namespace std;
+class first{
+	private:
+		double line;
+	public:
+		void set(int a);
+		int get();
+		first();
+		~first();
+};
+first::~first(){
+	cout<<"Object is being deleted\n";
+}
+first::first(){
+	cout<<"Object is being created"<<endl;
+}
+void first::set(int a){
+	line=a;
+}
+int first::get(){
+	return line;
+} 
+int main (){
+	
+	first *oden;
+	oden=new first;
+		(*oden).set(6);	
+		cout<< "Length of line : "<<oden->get()<<endl;
+		delete oden;
+		cout<<"aaa";
+		return 0;
+}
+
+
+
+
+
+
+
+lab 13 question 1
+
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+input      output
+3 4          12
+
+class first{
+	
+	int len,wid;
+	public:
+		void set(int a,int b);
+		int get();
+	
+	
+};
+int first::get(){
+	return len*wid;
+}
+void first::set(int a,int b){
+	len=a;
+	wid=b;
+}
+int main (){
+	int x,y;
+	cin>>x>>y;
+	first oden;
+	oden.set(x,y);
+	cout<<oden.get();
+		return 0;
+}
+
+
+
+
+
+lab 13 question 2
+Input	    Result
+3  4        7    
+            45
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+int fuc(int a,int b=42){
+	return a+b;
+}
+int main (){
+	int a,b;
+	cin>>a>>b;
+	cout<<fuc(a,b)<<endl;
+	
+	cout<<fuc(a)<<endl;
+	
+		return 0;
+}
+
+
+lab 13 question 3
+
+Input	Result
+3 4 5       1
+            3
+            12
+            60
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+int fuc(int a=1,int b=1,int c=1){
+	return a*b*c;
+}
+int main (){
+	int a,b,c;
+	cin>>a>>b>>c;
+	cout<<fuc()<<endl;
+	cout<<fuc(a)<<endl;
+	cout<<fuc(a,b)<<endl;
+	cout<<fuc(a,b,c)<<endl;
+	
+		return 0;
+}
+
+
+
+
+lab 13 question 4
+        
+Input	      Result
+1   0.254     int: 1
+              float: 0.254
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+void fuc(int a){
+	cout<<"int: "<<a<<endl;
+	
+}
+void fuc(float a){
+	cout<<"float: "<<a<<endl;
+	
+}
+int main (){
+	int a;
+	float b;
+	cin>>a>>b;
+	fuc(a);
+	fuc(b);
+	
+		return 0;
+}
+
+
+
+
+
+
+
+
+lab 14 question 1
+Input	    Result
+1 254       Child id is 1
+            Parent id is 254
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+class mother{
+	public:
+		int num;
+};
+
+class child1: public mother{
+	public:
+		int num1;
+};
+int main (){
+	child1 momo;
+	int a,b;
+	cin>>a>>b;
+	momo.num1=a;
+	momo.num=b;
+	cout<<"Child id is "<<momo.num1<<endl;
+	cout<<"Parent id is "<<momo.num<<endl;
+		return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+lab 14 question 2
+Input	   Result
+1 254      1
+           11938
+
+#include <string>
+#include <iostream>
+using namespace std;
+class mother{
+	private:
+		int i;
+	public:
+		mother(){
+			i=0;
+		}
+		void set(int a){
+			i=a;
+		}
+		int get(){
+			return i;
+		}
+		void uptade(){
+			i*=47;
+		}
+};
+
+class child1: public mother{
+	int x;
+	public:
+		mother b;
+		child1() {
+			x=0;
+		}
+		int get1(){
+			return x;
+		}
+		void set1(int a){
+			x=a;
+		}
+		
+};
+int main (){
+	child1 momo;
+	int a,b;
+	cin>>a>>b;
+	momo.set1(a);
+	cout<<momo.get1()<<endl;
+	momo.b.set(b);
+	momo.b.uptade();
+	cout<<momo.b.get()<<endl;
+		return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+lab 14 question 3
+ Result
+ This is a Vehicle
+ This is a 4 wheeler Vehicle
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+class vehicle{
+	public:
+		vehicle(){
+			cout<<"This is a Vehicle"<<endl;
+		}
+};
+class four{
+	public:
+		four(){
+			cout<<"This is a 4 wheeler Vehicle"<<endl;
+		}
+};
+
+class car:public vehicle,public four{
+	public:
+	car(){
+	}
+};
+
+int main (){
+	car obj;
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+lab 14 question 4
+
+This is a Vehicle
+This is a Vehicle
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+class vehicle{
+	public:
+		vehicle(){
+			cout<<"This is a Vehicle"<<endl;
+		}
+};
+class bus:public vehicle{
+			public:
+		bus(){
+		//	cout<<"This is a bus"<<endl;
+		}
+};
+
+class car:public vehicle{
+		public:
+		car(){
+		//	cout<<"This is a car"<<endl;
+		}
+};
+
+int main (){
+	car ford;
+	bus mmb;
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+lab 14 question 5
+
+This is a Vehicle
+Objects with 4 wheels are vehicles
+Car has 4 Wheels
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+class vehicle{
+	public:
+		vehicle(){
+			cout<<"This is a Vehicle"<<endl;
+		}
+};
+class four:public vehicle{
+	public:
+	four(){
+		cout<<"Objects with 4 wheels are vehicles"<<endl;
+	}	
+};
+
+class car:public four{
+	public:
+		car(){
+			cout<<"Car has 4 Wheels"<<endl;
+		}
+};
+
+int main (){
+	car ford;
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+lab 14 question 6
+This is a Vehicle
+Fare of Vehicle
+
+
+#include <string>
+#include <iostream>
+using namespace std;
+
+class vehicle{
+	public:
+		vehicle(){
+			cout<<"This is a Vehicle"<<endl;
+		}
+};
+
+class fare{
+	public:
+	fare(){
+		cout<<"Fare of Vehicle\n";
+	}	
+};
+
+class four:public vehicle{
+	public:
+	four(){
+	  //  cout<<"four\n";
+	  /*
+	  burda önce vehicle sonra four sonra 
+	  fare sonra car  constructor larını calıştırdı 
+          sıralama köklerden dallara dogru
+	  */
+	}
+};
+class car:public four,public fare{
+	public:
+		car(){
+	    //cout<<"car\n";
+	}
+};
+
+int main (){
+	car ford;
+	return 0;
+}
+
+
+
+
+
+
+
+lab 15 question 1
+Expected	                  Got	
+print derived class              print derived class        
+show base class                  show base class                                 
+
+#include <iostream>
+using namespace std;
+
+class base{
+
+public:
+
+     virtual void print(){
+     cout<< "print base class" <<endl;
+    }
+    void show(){
+        cout<< "show base class" <<endl;
+    }
+
+};
+class derived:public base{
+public:
+ void print(){
+        cout<< "print derived class" <<endl;
+    }
+};
+int main(){
+    derived m;
+    base *bp=&m;
+    bp->print();
+    bp->show();
+return 0;
+}
+
+
+
+
+
+
+
+
+lab 15 question 2
+Expected	        Got	
+base-1                  base-1       
+derived-2               derived-2        
+base-3                  base-3       
+base-4                  base-4          
+
+#include <iostream>
+using namespace std;
+
+class first{
+public:
+    void fuc(){
+        cout<<"base-1"<<endl;
+    }
+   virtual void fuc1(){
+        cout<<"base-2"<<endl;
+    }
+   virtual void fuc2(){
+        cout<<"base-3"<<endl;
+    }
+   virtual void fuc3(){
+        cout<<"base-4"<<endl;
+    }
+};
+
+class second:public first{
+public:
+     void fuc1(){
+        cout<<"derived-2"<<endl;
+    }
+
+    void fuc3(int x){
+        cout<<"derived-4"<<endl;
+    }
+};
+int main(){
+    first *fp;
+    fp=new second;
+    fp->fuc();
+    fp->fuc1();
+    fp->fuc2();
+    fp->fuc3();
+
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+lab 15 question 3
+Expected	Got	
+ In Base       In Base
+
+#include <iostream>
+using namespace std;
+
+class first{
+public:
+    void fuc(){
+        cout<<" In Base"<<endl;
+    }
+
+};
+
+class second:public first{
+public:
+     void fuc(){
+        cout<<" In Derived"<<endl;
+    }
+
+
+};
+int main(){
+   first *p;
+   p=new second;
+   p->fuc();
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+lab 15 question 4
+Expected	Got	
+20              20
+10              10
+#include <iostream>
+using namespace std;
+
+class shape{
+public:
+    void getset(int w,int h);
+protected:
+    int width,height;
+};
+
+ void shape::getset(int w,int h){
+    width=w;
+    height=h;
+}
+
+class tri:public shape{
+public:
+    int setarea(){
+        return width*height/2;
+    }
+};
+
+class rec:public shape{
+public:
+    int setarea(){
+        return width*height;
+    }
+};
+
+int main(){
+    shape *p,*p1;
+    rec rec1;
+    tri tri1;
+    p=&tri1;
+    p1=&rec1;
+    p->getset(4,5);
+    p1->getset(4,5);
+    cout<<rec1.setarea()<<endl;
+    cout<<tri1.setarea()<<endl;
+
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+lab 15 question 5
+Expected	Got	
+20              20
+10              10
+0               0
+#include <iostream>
+using namespace std;
+
+class shape{
+public:
+    void getset(int w,int h);
+    virtual int setarea(){
+        return 0;
+    }
+protected:
+    int width,height;
+};
+
+ void shape::getset(int w,int h){
+    width=w;
+    height=h;
+}
+class tri:public shape{
+public:
+    int setarea(){
+        return width*height/2;
+    }
+};
+
+class rec:public shape{
+public:
+    int setarea(){
+        return width*height;
+    }
+};
+
+int main(){
+    rec rec1;
+    tri tri1;
+    shape shape1;
+    shape *p1,*p2,*p3;
+    p1=&rec1;
+    p2=&tri1;
+    p3=&shape1;
+    p1->getset(4,5);
+    p2->getset(4,5);
+    p3->getset(4,5);
+    cout<<rec1.setarea()<<endl;
+    cout<<tri1.setarea()<<endl;
+    cout<<shape1.setarea()<<endl;
+return 0;
+}
+
+
+
+
+
+
+lab 15 question 6
+Expected	Got	
+20              20
+10              10
+#include <iostream>
+using namespace std;
+
+class shape{
+protected:
+    int width,height;
+
+public:
+    void getset(int w,int h);
+    void print(){ cout<<setarea()<<endl; }
+   virtual  int setarea()=0;
+
+};
+
+ void shape::getset(int w,int h){
+    width=w;
+    height=h;
+}
+class tri:public shape{
+public:
+    int setarea(){
+        return width*height/2;
+    }
+};
+class rec:public shape{
+public:
+    int setarea(){
+        return width*height;
+    }
+};
+int main(){
+   shape *p1=new tri;
+   shape *p=new rec;
+   p->getset(4,5);
+    p1->getset(4,5);
+    p->print();
+    p1->print();
+
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+lab 15 question 7
+Expected	Got	
+20              20
+10              10
+
+// dynamic allocation and polymorphism
+#include <iostream>
+using namespace std;
+
+class base {
+  protected:
+    int width, height;
+  public:
+   // Polygon (int a, int b) : width(a), height(b) {} da aşagıdakilerin syntax gösterimi
+   // base(int a,int b): width(a),height(b){}
+    // ya yukarıdaki yada alttaki aynı işlev
+    
+     base(int a ,int b){
+        width=a;
+        height=b;
+    }
+    virtual int area (void) =0;
+
+    void printarea()
+      { cout << area() << '\n'; }
+};
+
+class rec: public base {
+  public:
+    rec(int a,int b) : base(a,b) {}
+
+    int area()
+      { return width*height; }
+};
+
+class tri: public base {
+  public:
+    tri(int a,int b) : base(a,b) {}
+    int area()
+      { return width*height/2; }
+};
+
+int main () {
+  // use new to make dynamic memory allocation
+  base * p1 = new rec(4,5); //Rectangle width=4, height=5
+  base * p2 = new tri(4,5); //Triangle width=4, height=5
+  
+  //print areas of Rectangle and Triangle using printarea
+  p1->printarea();
+  p2->printarea();
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+lab 16 question 1
+
+Expected	
+30
+55
+#include <iostream>
+using namespace std;
+
+class first{
+public:
+    int add(int x,int y){
+        return x+y;
+    }
+    int add(int x,int y,int z){
+        return x+y+z;
+    }
+};
+
+int main(){
+
+    first m;
+   cout<< m.add(10,20)<<endl;
+   cout<< m.add(10,22,23)<<endl;
+
+
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+lab 16 question 2
+Expected		
+The Count is: 10
+#include <iostream>
+using namespace std;
+
+class first{
+private:
+    int count1;
+public:
+    first(){count1=8;}
+    // hoca bunu first(): count1(8){} olarak tanımlamıs yukarıda ile aynı
+    //sadece işlemleri azaltmak için kullanmıs illa 2 yazmak zorunda degilsin
+    // istersen 100 yaz count1=count1+200 mesela
+    void operator ++(){ count1=count1+2; }
+    void print(){cout<<"The Count is: "<<count1<<endl;}
+};
+
+int main(){
+    first oden;
+    ++oden;
+    oden.print();
+
+return 0;
+}
+/*
+void operator ++() bu ++ yerinde * veya -- veya +  felan koyabiliyorsun bunu
+koymanın amacı int main de cagırma yöntemi  ben int mainde oldugu gibi 
+cagırırım ama count1=count1 * 5 de diyebilirdim amac sadece cagırma şekli 
+belirleme  conunt1=count1*2 veya -2 veya -65 veya +100 diyebilirsin ihtiyac
+olur   şekil bu yani gramer 
+void operator   ne işlem yapıcaksan(){ ....ne yapmak istiyorsan... ;}
+*/
+
+
+
+
+
+
+
+
+
+lab 16 question 3
+Expected	
+Eating bread...
+
+//Overriding
+#include <iostream>
+using namespace std;
+
+class Animal {
+    public:
+virtual void eat(){
+cout<<"Eating...";
+    }
+};
+
+class dog :public Animal
+// Create a public Dog class, which is derived from Animal class
+//as public
+{
+ public:
+ void eat(){
+       cout<<"Eating bread...";
+    }
+};
+
+int main(void) {
+dog d;
+   // Create an instance of Dog class and name it as d
+    d.eat();
+   // Call eat function for this object. Which eat do you expect at the output?
+   return 0;
+}
+
+
+
+
+
+
+
+
+
+
+lab 16 question 4
+Expected	Got	
+drawing rectangle...
+drawing circle...
+
+#include <iostream>
+using namespace std;
+class Shape
+{
+    public:
+    virtual void draw()=0;
+
+};
+
+ class rectangle : public Shape
+{
+    public:
+     void draw()
+    {
+        cout <<"drawing rectangle..." <<endl;
+    }
+};
+
+class circle : public Shape
+{
+    public:
+     void draw()
+    {
+        cout <<"drawing circle..." <<endl;
+    }
+};
+
+int main( ) {
+    rectangle rec;// Create an instance of Rectangle class named rec
+    circle cir; // Create an instance of Rectangle class named rec
+   rec.draw(); // Call draw method of rectangle object
+   cir.draw(); // Call draw method of circle object
+   return 0;
+}
+
+
+
+
+
+
+
+
+lab 16 question 5
+Expected		
+1453  Ali  890000
+1071  Veli  59000
+
+#include <iostream>
+using namespace std;
+class employee {
+   public:
+       int id; //data member (also instance variable)
+       string name; //data member(also instance variable)
+       float salary;
+
+       employee(int a, string b, float c);
+        
+
+       void display();
+       
+};
+employee::employee(int id, string name, float salary)
+        {
+            this->id = id;
+            this->name = name;
+            this->salary = salary;
+        }
+void employee:: display()
+        {
+            cout<<id<<"  "<<name<<"  "<<salary<<endl;
+        }
+int main(void) {
+    //creating an object of Employee named e1, whose name is Ali, has salary of 890000 and his ID is 1453
+    employee e1(1453, "Ali", 890000);
+    
+    //creating an object of Employee named e2, whose name is Veli, has salary of 59000 and his ID is 1071
+    employee e2(1071 ,"Veli", 59000);
+
+    //display the content of employee Ali
+    e1.display();
+    
+    //display the content of employee Veli
+    e2.display();
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+lab 16 question 6
+Expected		
+201 Nominal 6.5
+202 Personal 6.5
+
+#include <iostream>
+using namespace std;
+
+//float interest;
+// static float interest;
+
+class account {
+   public:
+       int accno; 
+       string name;
+       
+       static float interest;
+       account(int accno, string name){
+            this->accno = accno;
+            this->name = name;
+        }
+       void display(){
+            cout<<accno<< " "<<name<< " "<<interest<<endl;
+        }
+};
+
+float account::interest=6.5;
+
+int main(void) {
+
+    //interest=6.5;
+    account a1(201,"Nominal");
+    account a2(202,"Personal");
+    a1.display();
+    a2.display();
+    return 0;
+}
+/*
+gözlemlerime göre static global variable görevi görüyor ,mesela bir fonksyion 
+cagırdıgında tekrar dan static aynı isimde variable oluşturmaz ,var olan yani 1 kez
+oluşturulmus olan variable in üstünde oynamalar yapar
+yukarıda gem global olarak hem static olarak yazdım class  in üstünde  ve calıştı
+int main dende 6.5 olarak ayarlayınca sorun cıkmadı iki türlüde. hem global olarak
+hemde static olarak. 
+static ile global in farkı nedir dersen; global i bir function içine felan koysan
+her function cagırınsa o global variable i yeniden oluşturulur veya hata verir
+ama static de durum farklı 1 defa oluşturdun mu  yeniden oluşturmaz ,var olanın
+üstünde oynamalar yapar
+*/
+
+
+
+
+
+
+
+
+
+
+
+lab 16 question 7
+Expected		
+201 Nominal
+1
+202 Personal
+2
+203 Real
+3
+Total Objects are: 3
+
+#include <iostream>
+using namespace std;
+//yada burayada tanımlayabilirsin static i;
+//static int count=0; yada altta 0'a eşitlersin
+// int mainde yazdım static int count=0; diye hata verdi
+// global etkisi var illa üstte olucak kodun
+class account {
+   public:
+       int accno; //data member (also instance variable)
+       string name;
+       static int count;
+       account(int accno, string name)
+        {
+             this->accno = accno;
+            this->name = name;
+            count++;
+        }
+       void display()
+        {
+            cout<<accno<<" "<<name<<endl;
+            cout<<count<<endl;
+        }
+};
+//count=0;
+int account::count=0;
+
+int main(void) {
+    //creating an object of Account named a1, whose name is Nominal and its ID is 201
+    account a1(201,"Nominal");
+    a1.display();
+    //creating an object of Account named a2, whose name is Personal and its ID is 202
+    account a2(202,"Personal");
+    a2.display();
+    //creating an object of Account named a3, whose name is Real and its ID is 203
+    account a3(203,"Real");
+    a3.display();
+
+    cout<<"Total Objects are: "<<account::count;
+    return 0;
+}

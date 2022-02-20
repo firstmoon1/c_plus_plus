@@ -1,0 +1,2163 @@
+/*
+#include <iostream>
+using namespace std;
+int main(){
+
+    cout << "hello bitch.1\n" ;//<< endl; \n gibi anlamı var.
+    cout << "hello bitch.2";
+
+return 0;
+}
+*/
+
+#include <iostream>
+using namespace std;
+int main(){
+
+    int a=32;
+    float b=3.52;
+    double c=4.546;
+    char d='A'; // or char d=65; aynı seyler aynı sonucu verirler
+    bool e=true; // e=true or false gibi ,c programda  if gibi
+    //true yazarsan 1 ,false yazarsan 0 verir;
+    cout <<"a degeri: "<<a<<endl;
+    cout <<"b degeri: "<<b<<endl;
+    cout << "c degeri: "<<c<<endl;
+    cout << "d degeri: "<<d<<endl;
+    cout <<"e degeri "<<e<<endl;
+
+    int x,y,z,sum=0;
+    x=4;
+    y=3;
+    z=5;
+    sum=x+y+z;
+    //cout << sum <<endl; böyle yaparsan sadece 4 yazar
+    //cout <<"sum: "<<sum<<endl; yaparsan sum: 4 yazar
+    // şu endl=\n dir,bazen " dasdas \n" yaparsın bazen
+    // yapamayacagın durumlarda kullanırsın
+    // << kullanım amacı şu; << anlamı output verme anlamında kullanılır
+    // >> ise input alma anlamında kullanılır
+    // mesela cout << printf gibi
+    // >> ise  scanf gibi ama cin >> x; format bu tabi int x; olarak tanımla
+    
+    int t,r,w;
+    cout <<"bir sayi girin: ";
+    cin >> t;
+    cout <<"2 inci sayiyi girin: ";
+    cin >> r;
+    cout <<"3.uncu sayiyi girin: ";
+    cin >> w;
+    cout << "toplam: "<<t+r+w<<endl;
+    // şunu farkettim \n koyamana gerek yok her cout dan sonra adam kendi otomatik koyuyor
+    // sayýlarý yan yanada alabilirsin
+    //cin >> t >> r >> w;
+    //cout << "toplam: "<<t+r+w<<endl;
+
+    // c programdaki operatorlar ayný mesela a++ yada a-- gibi
+    // yada a+= 2 gibi felan + - * / aynýlar ve a*= gibi
+    // yada a=a+2 gibi ; aynýlar
+return 0;
+}
+/*
+c++ storage types
+https://www.youtube.com/watch?v=QVTaiRmYxzk
+1 inci;
+auto a=10; yazınca kendi otomatik algılıyor ve int olur diyo
+yani sen int a=10; yazarsanda aynı işlevi görürsün
+2 inci;
+extern;
+c deki gibi global da int a=10; de sonra aşagılarda int main(){  } den sorna
+extern int a; deyebilirsin mesela anlamı şudur;
+global inda global ini yapıyor ileride dahada karışık şeyler görücekmisiz
+file file function function bagıntısız sanırım bunun ile hepsine baglantı
+kurabilirmisiz
+3 üncü;
+static;
+int main içinde kullandı adam static int a=10; dedi 
+anlamı şu  program tamamen terminate edene kadar static'e ayrılmış olan
+memory block u var oluyor.mesela c de fonksiyonlarda sen şunu biliyorsun
+function bittiginde içindeki herşeyde terminate oluyor  ayrılmış olan memories ler hep
+free ediliyor. pointer kullanırsan iş degişir tabi,static in kullanımı bu
+frequently bir şey kullanacaksan felan bu iyidir sürekli tekrar reallocate etmene gerek yok
+4 üncü;
+register
+int main içinde register int i=10; yaptı
+anlamı şu,cok hızlı bir şekilde programı calıştırıyor sanki cpu yu kendine satın almış gibi
+ve register  ramdan bir memory alıyor,eger ramda yer yoksa register için yer ayıramazsın
+normalde int i; kullanırsın programda i ye ulaşmak için önce cpu ya ordanda ram a gider burda 
+öyle bir şey yapamaya gerek yok cünkü direk ramdan alıyorsun  hızlı olmasının sebebi bu7
+ama gereksiz kullanma dedi ram de boş yer kalsın dedi
+registerlere pointerler ile ulaşamazsın bu önemli sebebi ise,
+registerlerin ram dan memory aldıgında yani yer ayırdıgında
+pointer ile o register a ayırdıgın memory yi bir adres ile gösteremezsin
+ olmuyormuş öyle.bir integer i int a; diye int mainde kaydedersen o cpu da bir adres alır
+ama register int a dediginde ramda bir adresi olmuyor mus.pointer le bu sebeple ulaşamıyor musuz.
+*/	
+
+
+
+
+
+
+
+
+
+
+
+
+
+acıklamalı anlatım 17.05.2021
+#include <iostream>
+#include <string>// bunu koyman gerek stringler için  hata alırsın yoksa
+using namespace std;
+
+int main()
+{
+    
+    //cin>>name;
+   /*
+    getline(cin,name);// tek tek alıyor  #include <string.h>
+    cout<<"name: "<<name<<endl;
+    char a;
+    a=name[2];
+    name[3]='?';
+    cout<<a<<endl;
+    cout<<"new name: "<<name<<endl;
+*/
+  /*
+    string s,s2,s6;
+    s;
+    s2="emre alsunadi";
+    //s1("ilkayalsun aidi");böyle calışmıyor  string s1("ilkayalsun aidi"); demen lazım ki calışşın
+    string s1("ilkayalsun aidi");
+    
+   
+    
+    cout << s1 <<endl;
+    cout << s2 <<endl;
+    
+    string s3(5,'x');
+    string s4;
+    
+    cout<<"s3: "<<s3<<endl;
+    
+    s4=s3;
+    cout<<"s4: "<<s4<<endl;
+    //s5(s2,2,2); böyle yaptıgında calışmaz ama aşagıdaki gibi calışır
+    string s5(s2,2,5);//bu kod ile s5=s2.substr(2,5); aynı seyler  2 inci
+    // haneden  başlıyor 5 character gidiyor alıyor sonra kopyalıyor s5 e;
+    
+    cout<<"s5: "<<s5<<endl;
+    */
+    /*
+    string st1;
+    st1="emre alsunadi";
+    //cin>> st1 ;
+    //getline(cin,st1);// cin ile boşluk tan sonrasını alamazsın 
+    // ama geline ile alırsın
+    // cin den sorna >> endl; yapamazsın
+    // cin >> "sadasd">> st1; yapamazsın print yapamazsın içinde
+
+    cout <<"length: "<<st1.length()<<endl;
+    cout <<"st1: "<< st1 <<endl;
+    
+    //char arr[10][20];
+    //cin>>arr[1];// böyle alırsın
+    //getline(cin,arr[1]);//illa string ,char array kabul etmiyor
+    //cout<<arr[1]; yazdırırsın
+    
+    st1[3]='?';
+    cout<<st1;
+    */
+    
+    
+    string st1,st3;
+    st1="emre alsunadi";
+    string st2("ilkay koc");
+    if(st1>st2){
+        cout<<"\nemre\n";
+    }else{
+        cout<<"\nilkay\n";
+    }
+    
+    // concanatetion
+    //st1=st1+' '+st2;// böyle manyaklıklar yapabilirsin
+    // araya boşluk cdeki strcat gibi 
+    //st1+=st2;// derdin yani direk felan aralıksız
+    //cout << st1 <<"\n";
+    
+    st3=st1.substr(2,4);// bunun olayı r den başlıyor a ya kadar 
+    // kopyalama yapıyor.  0 1 2   e m r yani ,r den başladı
+    //a ya kadar gitti 4 character gitti
+    //st3=st1.substr(2,-4);
+    // 4 yerine negatif sayı koyarsan 2 inci haneden başlar string in sonuna
+    // kadar gider ,illa positif olucak
+    
+    cout<<st3<<endl;
+    
+    
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+stringden char array ine dönüştürme ama bir işe yaramıyor neden 
+string = char array i  oldugunu hoca söyledi char cs[3] ile s[3] aynı şekilde elde edebilirsin gene 
+#include <iostream>
+using namespace std;
+/*
+int main(){
+	string s="ABCDEFG";
+	cout<<"s: "<<s<<endl;	
+	//const char *emre=s.c_str();
+	cout <<"s new : "<<s<<endl;
+	cout << "emre: "<<emre<<endl;
+	for(int i=0;i<7;i++){
+		cout <<"\n"<<emre[i];
+	}
+	
+	//cout <<"  "<<emre[3];
+	return 0;
+}
+*/
+/*
+yukarıdaki kod ile aynı işlev
+int main(){
+	string s="ABCDEFG";
+	cout<<"s: "<<s<<endl;
+		
+	//const char *emre=s.c_str();
+	
+	cout <<"s new : "<<s<<endl;
+	cout << "emre: "<<s<<endl;
+	for(int i=0;i<7;i++){
+		cout <<"\n"<<s[i];
+	}
+	
+	//cout <<"  "<<emre[3];
+	return 0;
+}
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+using namespace std;
+
+int main(){
+// kopyalama  bir şey alma  da biz şunu kullanırız
+// variable.substr(beginnig,alınacak miktar);
+// newvariable(oldvariable,beginnig,alınacak miktar);
+/*
+	// erase command
+	string st1,st2;
+	st1="emre ilkay osman";
+	cout<<"str:"<<st1<<endl;
+	st1.erase(4,6);// silme yaptık burda sonuc emre osman gösterir altta
+	cout<<"str:"<<st1<<endl;
+	
+	// replace
+	st2="abcdf zxcvn qwert";
+	st2.replace(6,5,"abcde");// burda  zxcvn yerine abcde yazdın 
+	cout<<"st2: "<<st2<<endl;// sildin yani zxcvn bunu.
+	// 6 inci yerden başladın 0,1,2,3,4,5,6 diye saydın abcdf den
+	//z senin 6 inci yerin ve 5 characterlik yer kapsadın 6 inci yerden sonra
+	// ve bu kapsadıgın yeri degiştirdin
+
+*/
+	
+/*
+    // find
+    string st1,st2;
+	st1="Mississippi River basin";
+	cout<<"st1 length: "<< st1.length()<<endl;// length ögrendik
+
+	cout<<"st1 find: "<<st1.find("R")<<endl;//R nin yeri 12 sırada bu sebeple 12 gösterdi
+	// fark etmiyor ilk charactere bakıyor sen 
+	//cout<<"st1 find: "<<st1.find("Ri")<<endl; yapsanda gene 12 gösterir
+	
+	cout<<"st1.find olmayan :"<<st1.find("so")<<endl;
+	// içinde olmadıgı için cok büyük bir sayı gösterir
+	// mesela 18446744073709551615 gibi.
+*/
+	
+/*
+	// assignment
+	string s1;
+	s1="emre alsinab";
+	string s2("ilkay alcı");
+	
+	s2=s1;
+	cout<<"s2=s2+s1: "<<s2<<endl;
+	
+	string s3,s4;
+	s3="havuzcu";
+	s4="tersaneci";
+	s4.assign(s3);
+	cout<<"s4.assign(s3): "<<s4<<endl;// s4 içini silip s3 ü yazıyor s4 içine 
+
+	//s4=s3+s4;// sıralama fark ediyor s3+s4 yani havuzcutersaneci
+	//cout<<"s4.assign(s3): "<<s4<<endl;
+	
+	string s5,s6;
+	s5="tozcu";
+	s6="kokainci";
+	s5.assign(s6,2,6);// bunun olayı abi s6 daki kokainci nin kainci sini alıp 
+	//s5 in içini silip bu kainciiy atmak;
+	// amac spesifik olarak belli yerdeki belli characteri kopyala yeni yere  at
+	cout<<"s5.assign(s6,2,6): "<<s5<<endl;
+	string s7,s8;
+	s7="hediye";
+	s8="husayin bolt";
+	s7[2]=s8[0];
+	cout<<"s7[2]=s8[0]: "<<s7[1]<<s7[2]<<endl;
+*/	
+return 0;
+}
+
+
+
+
+
+//try catch
+
+/*
+#include <iostream>
+#include <exception>
+using namespace std;
+
+int main(){
+
+	string s,s1,s2;
+	s="hediye ebru ece";
+	try{
+	
+	char letter=s.at(13);
+	// bilgidin finding yapıyor eger  string boyutunun da bir şeyler ararsan  string içindeki konuda ne varsa
+	// onu gösterir, eger string boyutu dışında üstünde bir şey ararsan hata verir,
+	// ne kadarlik boyut girdigini ve array bouyutunu gösterir  şunu girdin bunu ama bu kadar boyut var gibi
+
+	cout<<"letter is = "<<letter<<endl;
+	}
+	catch(exception & e){
+		cout << "cout emre: "<<e.what()<<endl;
+	}
+	// try catch fonksiyon desen degil özel bir şey.
+return 0;
+}
+*/
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <exception>
+using namespace std;
+
+
+int main(){
+	
+	/*
+	string s1,s2;
+	s1="emre";
+	s2="ilkay";
+	s1.append(" alci ");
+	cout<<"son hali: "<<s1<<endl;
+	s1.append(s2,2,3);
+	cout<<"s3: "<<s1<<endl;
+	*/
+	/*
+	string s1,s2;
+	s1="emre";// strcmp gibi degil ,ascll tablosuna göre büyük sayı daha büyüktür
+	s2="ali";//emre ile emre yapsan sana 0 verir
+	//emre ile ali  sana positif bir rakam verir
+	// strcmp deki gibi negatif sayı yada positif gösterecek bir komut yook direk if else felan
+	// büyüklük kücüklük bakılır
+	if((s1 > s2)){
+		cout<<"s1\n";
+	}else{
+		cout<<"dasdsa";
+	}
+	*/
+	/*
+	string s1,s2;
+	int num;
+	s1="emre";
+	s2="emreasdad";
+	num=s2.compare(s1);// bu şekilde bana -1 verdi
+	cout << num;//strcmp olayı ama birinci ikinci  olayı ascll tablosu gibi
+	//birinci=s2 ,ikinci s1;
+	//birinci  önce gelir ikinciden bu sebeple negatif sayı yani -1 gelir
+	//birinci ikinciden sonra gelseydi positif sayi yani +1
+	// birinci ikinciye eşit olsaydı  0 verirdi
+	// burda önce compare önüne gelene göre bakıyor hani birinci ve ikinci olayı
+	//num=s1.compare(s2);// bu şekilde bana 1 verdi
+	//cout << num;
+	*/
+	/*
+	string s1,s2;
+	int num;
+	s1="emre";
+	s2="mre ali baba";
+	num=s1.compare(1,3,s2,0,3);
+	//1 ve 3 s1 için  sonra s2 ve 0 ve 3 de s2 için
+	// s1 de 1 sayısını belirten yer m den başlayıp 3 character yerini referans aldık
+	//mre gibi sonra s2 deki 0 dan başlayıp 3 character aldık  gene mre bu sebeple  birbirlerine eşit oldular
+	// 0 gösterdi aşagıda  bunun amacı spesifik bir miktardaki characteri karşılaştırıyor string içindeki
+	cout<<num<<endl;
+	num=s1.compare(0,3,s2);
+	cout<<num<<endl;
+	*/
+	/*
+	// swap
+	string s1,s2;
+	int num;
+	s1="emre";
+	s2="mre ali baba";
+	s1.swap(s2);
+	cout<<"new s1: "<<s1 <<" new s2: "<<s2<<endl;
+	*/
+	
+	/*
+	//size and length are same
+	string s1,s2,s3;
+	int num;
+	s1="emre";
+	s2="mre ali baba";
+	cout<<"s1.size(): "<<s1.size()<<endl;
+	cout<<"s1.length(): "<<s1.length()<<endl;
+	
+	cout<<"s1.capacity: "<<s1.capacity()<<endl;// bunu anlamadım 4 gösteriyor yani
+	cout<<"s1.max_size(): "<<s1.max_size()<<endl;// beya büyük rakam gösterdi
+	
+	//cout<<"s3.empty(): "<<s3.empty()<<endl;// içi boş ise 1 verir
+	// içi dolu olan bir şeye 0 verir
+	// için dolu olan bir şeyi nasıl  boşaltırsın;
+	s1=s3;
+	cout<<"s1.empty(): "<<s1.empty()<<endl;
+	s1="emre";
+	
+	// bunun amacı ise var olan string de yeni size belirleme
+	s1.resize(7);
+	cout<<"new length: "<<s1.length()<<endl;
+	*/
+	
+	/*
+	// nth kısımdaki istenin characteri bulmayı denedik işe yaramadı
+	string s1,s2,s3;
+	int num;
+	s1="emre";
+	s2="baba emre";
+	int j,i;
+	for(j=1;j<4 && i!=string::npos;j++){
+		i=s1.find(s1,i+1);
+	}
+	string::nposs baktım 
+	acıklama şu
+	string in sonuna kadar  sayabilirsin point ettigi nokta string sonu
+	*/
+	
+	/*
+	string s1,s2,s3;
+	int num;
+	s1="ermrer";
+	s2="baba emre";
+	cout<<s1.find_last_of('r')<<endl;// en sondaki istenilen characterinin yerini gösteriyor 
+	// burda 5 inci sırada
+	
+	//burda ki olay şu;
+	// ilk sırada r olucak ve r den sonra gelen ilk  character (r olamayan)
+	//ermrer de  ilk character r olmadıgı için 0;
+	//s1="ermrer";
+	
+        //cout<<s1.find_first_not_of('r')<<endl;
+	s1="remrer";// burda ilk karakter r bu sebeple 1 göstericek neden
+	// r den sonra e var ( yukarıdaki acıklama gibi r den sornaki ilk r olmayanın yerini verir
+	//yani 1 gösterir
+	// rremrer olsa 2 göstericekti
+
+	cout<<s1.find_first_not_of('r')<<endl;
+	//yukarıdaki acıklamaya bak,sondan önceki harfin yerini gösterir sondan önceki harf r olmayacak
+	//eger r ise o da ondanda öncekini gösterir yani 3 gösterirdi
+	// burda 4 gösterdi refereans remrer dir
+
+	cout<< s1.find_last_not_of('r')<<endl;
+	*/
+	/*
+	//replacement
+	string s1,s2,s3;
+	int num;
+	s1="ilkay koc";
+	s2="baba emre";
+	s3=s1.replace(6,3,s2,0,4);
+	cout<<s3<<endl;// burdaki olay şu  s1 in belirleyicileri  6 ve 3 ,
+	//s2 belirleyicileri 0 ve 4  biliyorsun, 6 nerden başlaman gerektigini söylüyor
+	//3 ise kaç karakter lik yerde yapmak gerektigini
+	// illa sizeları aynı olmak zorunda degil xy yerine se asds felan yazabilirsin;
+	*/
+	
+	//inserting characters into a string
+	/*
+	string s1,s2,s3;
+	int num;
+	s1="ilkay  koc";
+	s2="baba emre";
+	// s1 den 6 hane ilerle sonra emre baba koy sonra kalan s1 yerleştir
+	// s1 de ilk boşluk =6 inci yer sonra emre baba sonra boşuk sonra koc
+	s1.insert(6,s2);
+	cout<<s1<<endl;
+	*/
+	
+
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+cyclinder,cube,sphere,perimeter,area volume felan
+#include <iostream>
+#include <string>
+using namespace std;
+#define pi 3.14
+
+
+int main(){
+	int x;
+	string desire;
+	
+	while(1){
+		
+	cin>>desire;
+	if(desire=="sphere"){
+		x=1;
+	}else if(desire=="cube"){
+		x=2;	
+	}else if(desire=="cyclinder"){
+		x=3;
+	}else if(desire=="perimeter"){
+		x=4;
+	}else{
+		x=5;
+	}
+	switch(x){
+		case 1:
+			int r;
+			cout<<"r: ";
+			cin>>r;
+			cout<<"Volume of a sphere: "<<(4*(3.14)*r*r*r)/3;
+			break;
+		case 2:
+			int r1,r2,r3;
+			cout<<"r1 and r2 and r3 :";
+			cin>>r1>>r2>>r3;
+			cout<<"Volume of a cube: "<<r1*r2*r3;
+			break;	
+		case 3:
+			int h;
+			cout<<"r and h: ";
+			cin>>r>>h;
+			cout<<"Volume of a cyclinder: "<<pi*r*r*h;
+			break;
+		case 4:
+			int m,n;
+			cout<<"m and n: ";
+			cin>>m>>n;
+			cout<<(2*m)+(2*n);
+			break;
+		case 5:
+			cout<<"m and n: ";
+			cin>>m>>n;
+			cout<<m*n;
+			break;
+		default:
+			break;		
+	}
+}
+	return 0;
+}
+
+
+
+
+
+
+
+
+google kick de bir soru link altta ilk soru sitedeki
+olay şu belli sayıda test case de belli sayıda ev adedi ve belli miktarda 
+para ile kaç tane ev alabilirsin ev fiyatlarınıda kendin alıyorsun bu arada
+ev fiyatlarınıda sorting yaptım
+https://www.youtube.com/watch?v=uGrBHohIgQY&t=319s
+
+#include <iostream>
+#include <math.h>
+#include <algorithm>
+using namespace std;
+
+int main(){
+	int money,n,test,ans=0;//n= ev sayısı ,m=ev fiyatı
+	cin>>test;
+	int j;
+	for(j=0;j<test;j++){
+		cout<<"n and money: ";
+		cin>>n>>money;
+		int m[n],i;
+		cout<<n<<" tane evin fiyatları :";
+		for(i=0;i<n;i++){
+			cin>>m[i];
+		}
+		// sayılarda sorting yapma
+		//int len;
+		//len=sizeof(m)/sizeof(m[0]);
+		//sort(m,m+len); yada direk al len yerine n al ev sayısı 
+		// aynı sey eve sayısı ile lem array daki uzunluk = ev sayısı
+		sort(m,m+n);
+	
+		for(i=0;i<n;i++){
+			if(m[i]<=money){
+				money-=m[i];
+				++ans;
+			}
+		}
+		cout<<"Case #"<<j+1<<": "<<ans<<endl;
+		ans=0;
+		//cout<<"\n";
+	}
+return 0;
+}
+
+
+
+
+
+
+
+
+#include <iostream>
+//#include <math.h>// pow ,sqr için felan kare almak için kök almak için
+//#include <algorithm>// sort() için felan kullanılıyor
+//#include <cstdlib>// bu rand() fonksiyonu kullanmak için
+//#include <exception>//try catch için kullanılıyor
+using namespace std;
+int a=50;
+void pre(float x){
+	cout<<"float : "<<x<<endl;
+}
+void pre(int x){
+	cout<<"int : "<<x<<endl;
+}
+
+int main(){
+/*	// random sayı gösteriyor
+	srand(0);
+	cout<< rand()<<endl;
+	cout<< rand()<<endl;
+	cout<<"global and local :\n";
+	int a=20;
+	cout<<a<<endl;// sana 20 gösterir
+	cout<< ::a<<endl;// sana 50 gösterir.
+	
+	float x=12.34;
+	int c=5;;
+	pre(x);
+	pre(c);
+	
+	cout <<"\n\n";
+	*/  
+	int arr[10]; 
+	int *p,*p1,*p2;
+	p=&arr[0];
+	p1=&arr[1];
+	p2=&arr[2];
+	cout<<"p: "<<p<<endl;
+	cout<<"p1: "<<p<<endl;
+	cout<<"p2: "<<p<<endl;
+	
+	p++;
+	cout<<"p[0]: "<<p<<endl;
+	
+	
+	
+return 0;
+}
+
+
+
+
+
+
+
+linear seached
+enter e bastıgında biter ,düz sıradan eleman araması yapar
+#include <iostream>
+using namespace std;
+void fuc(int arr[],int size,int searched){
+	int i;
+	for(i=0;i<size;i++){
+		if(searched==arr[i]){
+			cout<<"the searched is found at the place of :"<<i;
+			break;
+		}
+	}
+	
+}
+
+int main(){
+	char temp;
+	int arr[100],searched,i=0,size=0;
+	cout<<"array: ,pressing enter finishes the loop\n";
+	do{
+		
+		cin>>arr[i];
+		i++;
+		size++;
+		cout<<"before getchar: "<<temp<<endl;
+		temp=getchar();
+		cout <<"after getchar: "<<temp<<endl;
+		
+	}while(temp!='\n');
+	
+	cout<<"searched: ";
+	cin>>searched;
+	fuc(arr,size,searched);
+	
+	return 0;
+}
+
+
+
+
+
+Binary Search ,enter e basana kadar alır, önce  karışık olan array i sorting
+yapar sonra sortingdeki aranan elemanın yerini bulur ve bunları printler
+
+#include <iostream>
+#include <algorithm>
+using namespace std;
+void fuc(int arr[],int size,int searched){
+	cout<<"before the sorting: ";
+	int n;
+	for(n=0;n<size;n++){
+		cout<<arr[n]<<" ";
+	}
+	cout<<"\n";
+	sort(arr,arr+size);
+	cout<<"after the sorting: ";
+	for(n=0;n<size;n++){
+		cout<<arr[n]<<" ";
+	}
+	int i,mid,last,begin,m=1;
+	last=size;
+	begin=0;
+	//if(size%2==1){
+	//	size++;
+//	}
+	mid=size/2;
+	
+	while(true){
+		if(searched==arr[mid]){
+			cout<<"\nthe searched number is in the location of :"<<mid;
+			break;
+		}else if(searched>arr[mid]){
+			mid+=last/(2*m);		
+		}else if(searched<arr[mid]){
+			mid-=last/(2*m);
+		}
+		m++;
+	
+	}
+}
+int main(){
+	char temp;
+	int arr[100],searched,i=0;
+	cout<<"array: ,pressing enter finishes the loop\n";
+	do{
+		
+		cin>>arr[i];
+		i++;
+		temp=getchar();		
+	}while(temp!='\n');
+	cout<<"searched: ";
+	cin>>searched;
+	fuc(arr,i,searched);
+	
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+Jump Search
+Let’s consider the following array: (0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55, 89, 144, 233, 377, 610). Length of the array is 16. Jump search will find the value of 55 with the following steps assuming that the block size to be jumped is 4. 
+STEP 1: Jump from index 0 to index 4; 
+STEP 2: Jump from index 4 to index 8; 
+STEP 3: Jump from index 8 to index 12; 
+STEP 4: Since the element at index 12 is greater than 55 we will jump back a step to come to index 8. 
+STEP 5: Perform linear search from index 8 to get the element 55.
+8 den başlayarak 12 ye kadar sayıyor linear seach ile sonunda bitiriyor
+#include <iostream>
+#include <algorithm>
+using namespace std;
+void fuc(int arr[],int size,int searched){
+	//cout<<"before the sorting: ";
+	//int n;
+	/*for(n=0;n<size;n++){
+		cout<<arr[n]<<" ";
+	}
+	cout<<"\n";
+	sort(arr,arr+size);
+	cout<<"after the sorting: ";
+	for(n=0;n<size;n++){
+		cout<<arr[n]<<" ";
+	}
+	cout<<"\n";
+	*/
+	int jump=0;
+	while(true){
+		if(searched==arr[jump]){
+			cout<<"the searched item is in the location of: "<<jump;
+			break;
+		}else if(searched<arr[jump]){
+			cout<<"it is know loacated below\n";
+			break;
+		}else if(jump>size){
+			cout<<"the item is not found\n";
+			exit(-1);
+		}
+		jump+=4;
+	}
+	
+	cout<<"jump: "<<jump<<endl;
+	jump-=4;
+	for(int i=0;i<4;i++,jump++){
+		if(searched==arr[jump]){
+			cout<<"the searched item is in the location of: "<<jump;
+			break;
+		}
+			
+	}
+}
+int main(){
+	char temp;
+	int arr[100],searched,i=0;
+	cout<<"array: ,pressing enter finishes the loop\n";
+	do{
+		
+		cin>>arr[i];
+		i++;
+		temp=getchar();		
+	}while(temp!='\n');
+	cout<<"searched: ";
+	cin>>searched;
+	fuc(arr,i,searched);
+	
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+cümleleri sıralama harf bakımından abcde gibi ve boşlukları siliyor
+#include <iostream>
+#include <algorithm>
+#include <string>
+using namespace std;
+int main(){
+  string s;
+  getline(cin,s);
+  sort(s.begin(),s.end());
+  int i=s.size();
+  cout<<"size: "<<i<<endl;
+  for(int j=0;j<i;j++){
+  	if(s[j]==' '){
+  		s.erase(j,1);
+  		j--;
+	  }
+  }
+  cout<<s;
+	return 0;
+}
+
+
+
+
+
+nth yerdeki occurence i bulmak
+#include <iostream>
+using namespace std;
+int main ()
+{
+	string str;
+	str="ali veli seli keli";
+	size_t found=str.size();
+//	cout<<found<<endl;
+	int i=str.find("li");
+	cout<<i<<endl;
+	i=str.find("li",2);
+	cout<<i<<endl;
+	i=str.find("li",7);
+	cout<<i<<endl;
+	i=str.find("li",12);
+	cout<<i<<endl;
+	//find("li",sayi) yapmamızdaki amac n-th deki occurence i bulmak
+	//1 inciyi buldun ya ondan o adrese +1 ekleyip ve o eklenmiş yerden 
+	//itibaren bakıyor sıradaki occurence i bulmaya 
+	//eger yapmaz isen sürekli ilk occurence 'i bulur.
+	//	cout<<string :: npos; bunun olayı string sonu gösteriyor	
+	return 0;
+}
+
+
+
+
+
+
+
+amac capacity() yi arttırmak variable.reserve(new number) ile
+#include <iostream>
+using namespace std;
+int main ()
+{
+	string str;
+	str="ali veli";
+	cout<<"length: "<<str.length()<<endl;
+	cout<<"capacity before chance:"<<str.capacity()<<endl;
+	str.reserve(500);
+	cout<<"length :"<<str.size()<<endl;
+	cout<<"capacity: "<<str.capacity();
+	// amac capacity arttırmak
+	// format bu   string variable .reserve(sayı);
+		
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+class ve construction felan deneme
+contsruction amacı şu ,sen sürekli tekrar tekrar isim sayı  string verme diye function cagırıyorsun ve buna construction demişler
+alında class içinde function ,bu class lar  structlar ile function ların iç içe hali
+bu class da array felan sıkıntı bakmak gerek
+#include <string>
+#include <iostream>
+#include <cstring>
+using namespace std;
+
+class oden{
+public:
+	string name;
+	string pos;
+	int size;
+	char arr[100][100];
+
+	oden(string isim,string position,int uzun)
+	{
+		name=isim;
+		pos=position;
+		size=uzun;
+		int i=0;
+	
+	}
+	
+	void getinfo(){
+	cout<<"name: "<<name<<endl;
+	cout<<"pos: "<<pos<<endl;
+	cout<<"int: "<<size<<endl;
+	cout<<"list: \n\n";
+	}
+};
+
+int main ()
+{
+	oden first("ebru","doggy",3);
+	oden second("sinem","bacak omza",2);
+	first.getinfo();
+	second.getinfo();
+/* 
+
+	first.name="ebru";
+	first.pos="doggy style";
+	first.size=2;
+	strcpy(first.arr[0],"C++ hocasu mal");//,{"differencialci mal"},{"ebru  blowjob sever"}};
+	strcpy(first.arr[1],"differencialci mal");
+	strcpy(first.arr[2],"ebru blowjob sever");
+*/	
+/*	cout<<"name: "<<first.name<<endl;
+	cout<<"pos: "<<first.pos<<endl;
+	cout<<"int: "<<first.size<<endl;
+	cout<<"list: \n\n";
+	
+	cout<<"name: "<<second.name<<endl;
+	cout<<"pos: "<<second.pos<<endl;
+	cout<<"int: "<<second.size<<endl;
+	cout<<"list: \n\n";
+
+*/
+  return 0;
+}
+
+
+
+
+
+
+
+
+
+
+burda yapılan encapsulation operation
+yukarıda örnekte public yerine private a da alabilirsin
+construction lar class name ile aynı olmalıdır
+
+#include <string>
+#include <iostream>
+#include <cstring>
+#include <vector>
+using namespace std;
+
+class oden{
+private:
+	string name;
+	string pos; 
+	int size;
+	
+public:
+	
+	oden(string isim,string position,int uzun)
+	{
+		name=isim;
+		pos=position;
+		size=uzun;
+		int i=0;
+	
+	}
+	
+	void getinfo()
+	{
+	cout<<"name: "<<name<<endl;
+	cout<<"pos: "<<pos<<endl;
+	cout<<"int: "<<size<<endl;
+	cout<<"vector: \n\n";
+
+	}
+	
+	void changesize(int x){
+		size+=x;
+	}
+};
+
+int main ()
+{
+	oden first("ebru","doggy",3);
+	oden second("sinem","bacak omza",2);
+
+	
+	first.getinfo();
+	second.getinfo();
+	cout<<"review: \n";
+	first.changesize(5);
+	first.getinfo();
+
+  return 0;
+}
+
+
+
+
+
+
+
+hocanın dersteki örnegi
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class circle{
+	private:
+		double radius;	
+	public:
+		circle(){
+			radius=0.0;
+		}
+		//circle(int r);
+		circle(int r){
+			radius=r;
+		}
+		
+		void setra(double r){
+			radius=r;
+		}
+		double getdia(){
+			return radius*2;
+		}
+		//double getarea();
+		double getarea(){
+			return radius*radius*(22.0/7);
+		}
+		//double getcircum();
+		double getcircum(){
+		return 2*radius*(22.0/7);
+		}
+		
+		double getback(double a){
+			return radius;
+		}
+};
+
+
+/*
+bunları dışarı yazmak yerine içeriyede yazabilirdi yani
+ama işlev yani böyle bir şeyde yapabilirsin 
+class içinde de tanımlama yapabilirsin, dışındada tanımlama yapabilirsin.
+circle::circle(int r)
+{
+	radius=r;
+}
+
+double circle::getarea()
+{
+	return radius*radius*(22.0/7);
+}
+
+double circle::getcircum()
+{
+	return 2*radius*(22.0/7);	
+}
+*/
+int main(){
+	
+	circle c1,c2(7);
+	double e;
+	cout<<"\n"<<c1.getback(e)<<endl;
+	
+	cout<<"\n\n";
+	cout<<c1.getarea()<<endl;
+	c1.setra(5);
+	
+	cout<<c1.getcircum()<<endl;
+	
+	cout<<c2.getdia()<<endl;
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class roger{
+	
+	private:
+		string name;
+		int age;
+		int *z;
+	public:
+		int gbi(){
+			return age;
+		}
+		string gbs(){
+			return name;
+		}
+		int gbp(){
+			return *z;
+		}
+		roger();
+		/*
+		roger(){
+			name="ebru";
+			age=31;
+		}
+		*/
+		roger(string x,int a){
+			age=a;
+			name=x;
+		}
+		void print(){
+			cout<<name<<" and "<<age<<endl;
+		}
+		
+		void exp(string n,int i);
+		
+};
+roger::roger(){
+		name="ebru";
+		age=31;
+		z=new int(20);// new int(...) bunun amacı yeni bir variable yaratma yapıyyorsun,20 diye bir şey yarattım ,z ye attım ,
+		// fark ettiysen *z yapmadım ,neden bilmiyorum calışmıyor öyle
+		// dinamik olarak bellek almanın yolu new veri tipi (...) dir mesela new int(5); gibi
+		//pointerlarda yapıyoruz ya bu c programda free() vardı burde pointerlar için delete variable name; vardır mesela delete z;
+}
+
+void roger::exp(string n,int i){
+	name=n;
+	age=i;
+}
+
+int main(){
+	roger oden,oden1("derya",22);
+	//oden1.print();
+	roger first;
+	first.exp("ebru",24);
+	cout<<first.gbi()<<endl;
+	cout<<first.gbs()<<endl;
+	cout<<first.gbp()<<endl;
+	
+	//cout<<oden1.gbi()<<endl;
+	//cout<<oden1.gbs()<<endl;
+	
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+using namespace std;
+class roger{
+	
+	private:
+		string name;
+		int age;
+		int *z;
+	public:
+	/*
+		int gbi(){
+			return age;
+		}
+		string gbs(){
+			return name;
+		}
+		int gbp(){
+			return *z;
+		}
+		*/
+		roger();
+		/*
+		roger(){
+			name="ebru";
+			age=31;
+		}
+		*/
+		roger(string x,int a){
+			age=a;
+			name=x;
+			z=new int(4);
+		}
+		void print(){
+			cout<<name<<" and "<<age<<endl;
+			cout<<*z<<endl;
+		}		
+		void exp(string n,int i);
+		
+};
+roger::roger(){
+		name="ebru";
+		age=31;
+		z=new int(0);
+		// new int(...) bunun amacı yeni bir variable yaratma yapıyyorsun,20 diye bir şey yarattım ,z ye attım ,
+		// fark ettiysen *z yapmadım ,neden bilmiyorum calışmıyor öyle
+		// dinamik olarak bellek almanın yolu new veri tipi (...) dir mesela new int(5); gibi
+		//pointerlarda yapıyoruz ya bu c programda free() vardı burde pointerlar için delete variable name; vardır mesela delete z;
+}
+
+void roger::exp(string n,int i){
+	name=n;
+	age=i;
+}
+
+
+
+int main(){
+	roger oden,oden1("derya",22);
+	oden1.print();
+	roger first;
+	first.print();
+	//first.exp("ebru",24);
+	//cout<<first.gbi()<<endl;
+//	cout<<first.gbs()<<endl;
+	//cout<<first.gbp()<<endl;
+	
+	//cout<<oden1.gbi()<<endl;
+	//cout<<oden1.gbs()<<endl;
+	
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+
+using namespace std;
+
+class first{
+	
+	protected:
+		string name;
+		int age;
+		char gender;
+	public:
+		string name1;
+		int age1;	
+		char gender1;
+		void fuc(string name2,int age2,char gender2){
+		/*
+		//bu şekilde calışmadı illa function içine almak gerek
+		name=name1;
+		age=age1;
+		gender=gender1;
+		*/
+		name=name2;
+		age=age2;
+		gender=gender2;
+		}
+		void getinfo();
+		
+		int getbackage(int x){
+			return age;
+		}
+		string getbackstring(string x){
+			return name;
+		}
+		char getbakcchar(char x){
+			return gender;
+		}
+		first();
+		first(string name3,int age3,char gender3){
+			name=name3;
+			age=age3;
+			gender=gender3;
+		}
+		void getinfo1();
+		
+};
+
+class second : public first{
+	public:
+		void getnew(string x,int a,char f){
+			name1=name=x;
+			age1=age=a;
+			gender1=gender=f;
+		}
+};
+first::first(){
+	name="noone";
+	age=0;
+	gender='w';
+}
+void first::getinfo(){
+cout<<"name: "<<name<<"\n"<<"age: "<<age<<"\n"<<"gender: "<<gender<<endl;
+}
+void first::getinfo1(){
+	cout<<"name: "<<name1<<"\n"<<"age: "<<age1<<"\n"<<"gender: "<<gender1<<endl;
+}
+
+int main(){
+	first oden;
+	/*
+	oden.name1="ebru sude";
+	oden.age1=32;
+	oden.gender1='F';
+	*/
+	oden.fuc("ebru sude",34,'F');
+	oden.getinfo();
+	cout<<"\n\n"<<endl;
+	
+	first roger,roger1("sinem fuck",23,'F');
+	roger.getinfo();
+	cout<<"\n\n"<<endl;
+	roger1.getinfo();
+	cout<<"\n\n"<<endl;
+		
+	second luffy;
+	luffy.getnew("ilkay koc",24,'M');
+	luffy.getinfo1();
+	cout<<"\n\n"<<endl;
+	luffy.getinfo();
+	
+	
+	
+	return 0; 
+}
+
+
+
+
+
+
+
+
+
+// burdaki olay şu;
+derived class dan sen construction yapıyorsun ama base class in construction ini cagırma
+derived class a 
+#include <iostream>
+#include <string>
+using namespace std;
+class first{	
+	protected:
+		string name;
+		int age;
+	public:		
+	first(int a,string n){
+		name=n;
+		age=a;
+	}	
+	void getback(){
+		cout<<"name: "<<name<<" age: "<<age<<endl;
+	}	
+};
+class second:  first{
+	public:
+		second(int ag,string nam):first(ag,nam){}		
+	void practice(){
+		cout<<"practice: name: "<< name <<" age: "<< age <<endl;
+	}	
+};
+int main(){
+	first ebru(30,"sinem");
+	ebru.getback();
+	second deniz(20,"ebru");
+	deniz.practice();
+	return 0;
+};
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+// olay şu % bundan sonrasını erase yaptım % yazılana kadar alır gecer 
+//sayar felan
+// kücük harf büyük harf say  mesela
+//Input	         Result
+//G4!gAasdf4%      2 5 önce büyük harf sonra kücük harf 
+//123456789%       0 0
+void fuc1(string arr,int *num,int *num1){
+	int i=0;
+	while(arr[i]!='\0'){
+		if(arr[i]<='Z' && arr[i]>='A'){
+			(*num)++;
+		}else if(arr[i]<='z' && arr[i]>='a'){
+			(*num1)++;
+		}
+		i++;
+	}	
+}
+int main(){
+	string arr;
+	getline(cin,arr);
+	int numup=0,numdown=0;	
+	int found=arr.find('%');
+	arr.erase(found);
+	cout<<arr<<endl;
+	fuc1(arr,&numup,&numdown);
+	cout<<arr<<"    "<<"numup: "<<numup<<" and "<<"numdown: "<<numdown<<endl;
+	return 0;	
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+int arrayinde araya bir sayı ekleme ve bu sayı doublucated ,yani doublucated in sayısını bul arrayda;
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+
+int main(){
+
+	//int arr[]={8,9,7,6,11,10,1,3,2,4,10,5};
+	int arr[300],arr1[300];
+	
+	for(int k=0;k<=100;k++){
+		arr[k]=k+1;
+	}
+	
+	int h;
+	
+	for(h=0;h<100;h++){
+		
+		if(arr[h]==50){
+		
+			arr1[h]=61;
+		
+			for( ;h<=101;h++ ){
+				arr1[h+1]=arr[h];
+			}
+			break;
+		}
+		
+		arr1[h]=arr[h];
+	}
+	
+
+	
+	int i,j;
+	int size=0;
+	for(h=0;arr1[h]!=NULL;h++){
+		size++;
+	}
+	
+	
+
+	for(i=0;i<=size;i++){
+		
+		for(j=i+1;j<size;j++){
+			
+			if(arr1[i]==arr1[j]){
+				cout<<"doublacated : "<<arr1[i]<<endl;
+				break;
+			
+			}
+		if(arr[i]==arr[j]){
+				break;
+			}
+		}
+	}
+
+	
+	
+	return 0;
+}
+
+
+
+
+
+
+bir üstteki kodun hazır hali gibi array içinde dublicated bulma
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+int main(){
+
+	int arr[]={8,9,7,6,11,10,1,3,2,4,10,5};				
+	int i,j,size=0;
+	size=sizeof(arr)/sizeof(arr[0]);
+	
+	for(i=0;i<=size;i++){		
+		for(j=i+1;j<size;j++){			
+			if(arr[i]==arr[j]){
+				cout<<"doublacated : "<<arr[i]<<endl;
+				break;
+			
+			}
+		if(arr[i]==arr[j]){
+				break;
+			}
+		}
+	}	
+	return 0;
+}
+
+
+
+
+
+
+
+2 farklı class dan derivedlarına constructor yapma 2 adet base and her biri için
+1 adet derived ve en sonda bir adet daha ayrı class ve bu class a 2 adet derivedi 
+ekledim dallandırdım,ve constructor ları da bagladım#include <iostream>
+#include <string>
+#include <algorithm>
+#include <cstring>
+#include <iostream>
+
+using namespace std;
+
+class tire2{
+public:
+    tire2(int a){
+    cout<<"you are in tire2 class.\n";
+    cout<<a<<endl;
+    }
+};
+
+class tire4{
+public:
+    tire4(int a){ 
+	cout<<"you are in tire4 class.\n";
+        cout<<a<<endl;
+     }
+};
+
+class car:public tire4{
+public:
+  car(int a):tire4(a){
+  cout<<"you are in car class.\n";
+  cout<<a<<endl;
+  }
+};
+
+class motorcycle:public tire2{
+public:
+  motorcycle(int a):tire2(a){
+  cout<<"you are in motorcycle class.\n";
+  cout<<a<<endl;
+  }
+};
+
+class com:public motorcycle,public car{
+public:
+    com(int a): motorcycle(a), car(a){
+    cout<<"you are in com class.\n";
+    cout<<a<<endl;
+    }
+};
+
+int main(){
+    tire2 a1(1);
+    cout<<"\n";
+    tire4 a2(2);
+    cout<<"\n";
+    car a3(3);
+    cout<<"\n";
+    motorcycle a4(4);
+    cout<<"\n";
+    com a5(5);
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+
+int main(){
+
+ std::string s = "Hey wollef sroirraw";
+  int cStart = 0, len = s.length();
+  for(int i = 0; i < len; i++)
+  {
+    if(s[i] == ' ')
+    {
+      if(i - cStart >= 5)
+        std::reverse(s.begin() + cStart, s.begin() + i);
+      cStart = i + 1;
+    }
+  }
+  if(len - cStart >= 5)
+      std::reverse(s.begin() + cStart, s.end());
+  
+	cout<<s<<endl; 
+  return 0;
+  
+}
+
+
+
+
+
+
+/*
+#include <iostream>
+#include <algorithm>
+using namespace std;
+
+int check(int num3){
+	int arr[10],i=0,j,size=0;
+	
+	while(num3!=0){
+		arr[i]=num3%10;
+		num3/=10;
+		i++;
+	}
+	j=size=i;
+	j--;
+	for(i=0,j;i<size ;i++,j--){
+	
+		if(arr[i]!=arr[j]){
+			return 0;
+		}
+	}	
+return 1;	
+}
+int main(){
+	int num1,num2,num3,i,j;
+	cin>>num1>>num2;
+	num3=num1*num2;
+	
+	for(i=0;i<=9999;i++){
+		num3=num1*num2;
+	
+		if(check(num3)==1){
+			cout<<"this is the biggest palindrome number: "<< num3<<endl;
+			return 0;
+		}
+		
+		num1--;
+	}
+	
+	
+	return 0;
+}
+
+*/
+
+/*
+
+#include <algorithm>
+#include <iostream>
+using namespace std;
+
+int main(){
+	
+	int i,j=2,h=0,sayi,eb;
+	int arr[1000];
+	cin>>sayi;
+	arr[0]=0;
+	
+	for(i=2;i<sayi/2+1;i++){
+		if(sayi%i==0 ){
+		
+			if(arr[0]!=0){
+				for( j=2 ;j<i/2+1 ;j++){
+					if(i%j==0){
+						break;
+					} 
+					
+				}	
+			}
+			if(i%j==0){
+				continue;
+			}
+	
+			arr[h]=i;
+			h++;				
+		}
+	}
+	cout<<"prime numbers: \n";
+	for(i=0;i<h;i++){
+		cout<<arr[i]<<endl;
+	}
+	cout<<"largest one: \n";
+	eb=arr[0];
+	for(i=0;i<h;i++){
+		if(eb <arr[i]){
+			eb=arr[i];
+		}
+	}
+
+	cout<<"the largest prime factor of the "<< sayi <<"  is "<<eb;
+	
+	return 0;
+}
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+/*
+    void swapp(int &c,int &d){
+        int temp=c;
+        c=d;
+        d=temp;
+    }
+    */
+    /*
+    void swapp(char &c,char &d){
+        char temp=c;
+        c=d;
+        d=temp;
+    }
+    */
+    //template bunda int char float yazmana gerek yok kendi ayıklıyor
+    template <class oden> // or template <typename ebru> aynı şey
+    void swapp(oden &c,oden &d){
+        oden temp=c;
+        c=d;
+        d=temp;
+    }
+int main(){
+  // int
+  int a=5,b=6;
+  cout<<a<<" - "<<b<<endl;
+  swapp(a,b);
+  cout<<a<<" - "<<b<<endl;
+
+  // char
+  char c='a',d='b';
+  cout<<c<<" - "<<d<<endl;
+  swapp(c,d);
+  cout<<c<<" - "<<d<<endl;
+
+return 0;
+}
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+  // burda for döngüsünün farklı bir ceşidini gördük
+int main(){
+    char s[][100]={"elma","armut","ebru"};
+    int i=0;
+    for(string a:s){
+        cout<<"s["<<i<<"]: "<<s[i]<<endl;
+        cout<<"a: "<<a<<"  "<<"s: "<<s<<endl;
+        i++;
+    }
+return 0;
+}
+
+
+
+
+
+
+
+
+
+class inheritance constructor felan
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+class first{
+private:
+    string name;
+    int age;
+public:
+    first(string n,int a){
+        name=n;
+        age=a;
+    }
+    void get(){
+        cout<<"name: "<<name<<" - "<<"age: "<<age<<endl;
+    }
+};
+class second:public first{
+    public:
+    second(string x,int y) : first(x,y){
+
+    }
+};
+int main(){
+
+    first oden("ebru",33);
+    oden.get();
+   second nami("ceylan",36);
+    nami.get();
+return 0;
+}
+
+
+
+
+
+
+
+
+c++ pointerli class felan deneme yaptım öyle
+#include <iostream>
+#include <string>
+using namespace std;
+class first{
+public:
+    int age;
+    string name;
+};
+int main(){
+
+    first *ap=new first;
+    ap->age=35;
+    ap->name="ebru";
+    cout<<ap<<"\n"<<ap->age<<"\n"<<ap->name<<endl;
+    delete ap;
+    cout<<endl;
+    cout<<ap<<"\n"<<ap->age<<"\n"<<ap->name<<endl;
+return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+vector usage
+// Online C++ compiler to run C++ program online
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+void fuck(vector<int> &oden,int arr[],int *n){
+    
+    for(int i=0;i<*n;i++){
+        oden.push_back(arr[i]);
+    }
+}
+int main() {
+    vector<int> head;
+    int n=5,i,arr[5]={10,30,20,50,30};
+   
+    fuck(head,arr,&n);
+    sort(arr,arr+5);
+    //sort(head.begin(),head.end());
+    for(i=0;i<head.size();i++){
+        cout<<head[i]<<endl;
+        cout<<"arr: "<<arr[i]<<endl;
+    }
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+//  bu kütüphanede count yapıyorsun kaç tane var felan
+#include <iostream>
+#include <bits/stdc++.h>
+using namespace std;
+  
+int main()
+{
+    int arr[] = { 3, 2, 1, 3, 3, 5, 3 };
+    int n = sizeof(arr) / sizeof(arr[0]);
+    cout << "Number of times 3 appears : "<< count(arr, arr + n, 3);
+  
+    return 0;
+}
+
+
+
+
+
+
+// string deki en uzun palindromu bul kodu
+#include <bits/stdc++.h>
+using namespace std;
+void printSubStr(string str, int low, int high)
+{
+    for (int i = low; i <= high; ++i)
+        cout << str[i];
+}
+int longestPalSubstr(string str)
+{
+    int n = str.size();      
+    int maxLength = 1, start = 0;    
+    for (int i = 0; i < str.length(); i++) {
+        for (int j = i; j < str.length(); j++) {
+            int flag = 1;         
+            for (int k = 0; k < (j - i + 1) / 2; k++)
+                if (str[i + k] != str[j - k])
+                    flag = 0;       
+            if (flag && (j - i + 1) > maxLength) {
+                start = i;
+                maxLength = j - i + 1;
+            }
+        }
+    }
+    cout << "Longest palindrome substring is: ";
+    printSubStr(str, start, start + maxLength - 1);
+    return maxLength;
+}
+ 
+int main()
+{
+	string str;
+	cin>>str;
+    cout << "\nLength is: "
+         << longestPalSubstr(str);
+    return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#include <iostream>
+#include <string>
+#include <algorithm>
+using namespace std;
+
+typedef struct first{
+string name;
+int age;
+};
+
+int main(){
+
+    first oden,*momo;
+    momo = new first();
+
+    oden.name="esma";
+    oden.age=33;
+    cout<<oden.name<<"\n"<<oden.age<<endl;
+    momo=&oden;
+    cout<<momo->name<<"\n"<<momo->age<<endl;
+return 0;
+}
+
+
