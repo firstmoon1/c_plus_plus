@@ -1,0 +1,40 @@
+#include <iostream>
+#include <string>
+using namespace std;
+
+string  mayallah (string mes){
+    int sizee=mes.length(),h,i=0,j=1,m=0;
+    int k=mes.find(' ');
+    if(mes[0]=='a' || mes[0]=='i' || mes[0]=='o' || mes[0]=='u' || mes[0]=='e'){// vowel
+        mes.insert(k,"ri");
+        cout<<"if in alti mes: "<<mes<<endl;
+    }else{ // unvowel
+        ch=mes[0];
+        mes.erase(0,1);
+        mes.insert(k-1,ch);
+    }
+    k=0;
+    m=mes.find(" ",m);
+    while(m!=-1){
+        if(m<30 && m>0){
+            cout<<"m - j = "<<m<<" - "<<j<<endl;
+            while(k<j){
+                mes.insert(m,"i");
+                k++;
+            }
+            j++;
+            k=0;
+        }
+        m=mes.find(" ",m+j);
+    }
+    string s(j,'i');
+    mes.insert(mes.length(),s);
+    return mes;
+}
+int main() {
+    cout<<"hello"<<endl;
+   string arr="pncient elma armut";
+   arr=mayallah(arr);
+   cout<<"arr :"<<arr<<endl;
+    return 0;
+}
